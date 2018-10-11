@@ -5,5 +5,5 @@ from . import views
 #Add app name to differentiate between different apps that might be added
 app_name='Park'
 urlpatterns = [
-  path('', views.index, name='index'),
+  path('', views.user_create, name='index'),
 ]

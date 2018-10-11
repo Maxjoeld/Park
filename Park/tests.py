@@ -1,9 +1,14 @@
 import datetime
 from django.test import TestCase
 from django.utils import timezone
-from .models import Choice, Question
+from .models import User
 
 class QuestionModelTests(TestCase):
+  
+  def user_created(self):
+    u = User(first_name='test', last_name='Dela',points=4,car='Nissan', 
+    license_plate = 'ewwe324', pub_date=timezone.now())
+
 
   def test_was_published_recently_with_future_question(self):
     """
@@ -11,7 +16,7 @@ class QuestionModelTests(TestCase):
     is in the future.
     """
     time = timezone.now() + datetime.timedelta(days=30)
-    future_question = Question(pub_date=time)
+    future_question = User(pub_date=time)
     self.assertIs(future_question.was_published_recently(), False)
 
   def test_was_published_recently_with_old_question(self):
