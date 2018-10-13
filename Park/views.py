@@ -14,6 +14,7 @@ from .models import User
 #         fields = ['first_name', 'last_name', 'points', 'car', 'license_plate']
 
 def user_create(request):
+  print('made it ')
   form = User(**request)
   form.save()
   return print("Created a valid user")

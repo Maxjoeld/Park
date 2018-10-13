@@ -19,4 +19,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('Park.urls')),
+    path('token-auth/', obtain_jwt_token)
 ]

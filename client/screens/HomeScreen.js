@@ -1,4 +1,6 @@
 import React from 'react';
+import axios from 'axios';
+
 import {
   Image,
   Platform,
@@ -17,7 +19,20 @@ export default class HomeScreen extends React.Component {
     header: null,
   };
 
+  login = (e) => {
+    // e.preventDefault();
+    // const body = data;
+    axios.post('http://localhost:8000/')
+    .then(res => {
+      AsyncStorage.setItem('token', res.data.token);
+      this.props.navigation.navigate('tabNav');
+    })
+    .catch((err) => console.log(err))
+  };
+
   render() {
+    console.log('jheuy')
+    this.login()
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
