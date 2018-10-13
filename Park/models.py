@@ -9,7 +9,7 @@ class User(models.Model):
   points = models.IntegerField(default=0)
   car = models.CharField(max_length=200)
   license_plate = models.CharField(max_length=10)
-  pub_date = models.DateTimeField('date published')
+  pub_date = models.DateTimeField(default=timezone.now)
 
   def was_published_recently(self):
     now = timezone.now()
