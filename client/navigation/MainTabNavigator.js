@@ -1,6 +1,8 @@
 import React from 'react';
 import { Platform } from 'react-native';
 import { createDrawerNavigator,createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import { Text, View, SafeAreaView, ScrollView, Dimensions} from 'react-native';
+import { DrawerItems } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
@@ -9,9 +11,12 @@ import SettingsScreen from '../screens/SettingsScreen';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
+}, {
+  headerMode: 'none',
 });
 
 HomeStack.navigationOptions = {
+  headerMode: 'none',
   tabBarLabel: 'Home',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
@@ -52,9 +57,23 @@ SettingsStack.navigationOptions = {
     />
   ),
 };
+const CustomDrawerComponent = (props) => (
+  <SafeAreaView style={{ flex: 1 }}>
+    <View style={{height:150,backgroundColor:'white', alignItems: 'center', 
+    justifyContent:'center'}}>
+      <Text>Hey</Text>
+    </View>
+    <ScrollView>
+        <DrawerItems {...props} />
+    </ScrollView>
+  </SafeAreaView>
+);
+
 
 export default createDrawerNavigator({
-  HomeStack,
-  LinksStack,
-  SettingsStack,
+  Home: HomeStack,
+  Profile:LinksScreen,
+  Settings:SettingsScreen,
+}, {
+  contentComponent: CustomDrawerComponent
 });
