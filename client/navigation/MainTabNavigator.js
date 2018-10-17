@@ -69,11 +69,15 @@ const CustomDrawerComponent = (props) => (
   </SafeAreaView>
 );
 
-
+const { width } = Dimensions.get('window');
 export default createDrawerNavigator({
   Home: HomeStack,
   Profile:LinksScreen,
   Settings:SettingsScreen,
 }, {
-  contentComponent: CustomDrawerComponent
+  contentComponent: CustomDrawerComponent,
+  drawerWidth: width,
+  contentOptions: {
+    activeTintColor: 'orange'
+  }
 });

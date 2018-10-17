@@ -17,9 +17,11 @@ import { WebBrowser } from 'expo';
 import { MonoText } from '../components/StyledText';
 
 export default class HomeScreen extends React.Component {
-  // static navigationOptions = {
-  //   headerMode: 'none'
-  // };
+  static navigationOptions = {
+    drawerIcon: (tintColor) => (
+      <Icon name="home" style={{fontSize: 24, color: tintColor}}/>
+    )
+  };
 
   login = (e) => {
     // e.preventDefault();
