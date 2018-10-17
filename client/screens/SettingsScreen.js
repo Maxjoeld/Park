@@ -1,14 +1,33 @@
 import React from 'react';
-import { ExpoConfigView } from '@expo/samples';
+import { ScrollView, Text, StyleSheet } from 'react-native';
+import { Header,Left,Right,Icon } from 'native-base';
+import { FontAwesome } from "react-native-vector-icons";
 
 export default class SettingsScreen extends React.Component {
   static navigationOptions = {
-    title: 'app.json',
+    drawerIcon: (tintColor) => (
+      <FontAwesome name="cog" style={{fontSize: 24, color: 'orange'}}/>
+    )
   };
 
   render() {
-    /* Go ahead and delete ExpoConfigView and replace it with your
-     * content, we just wanted to give you a quick view of your config */
-    return <ExpoConfigView />;
+    return (
+      <ScrollView style={styles.container}>
+         <Header>
+          <Left>
+            <Icon style={{ justifyContent: 'center'}} name="menu" onPress={() => this.props.navigation.openDrawer()}/>
+          </Left>
+        </Header>
+        <Text>Settings</Text>
+      </ScrollView>
+    )
   }
-}
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 15,
+    backgroundColor: '#fff',
+  },
+});

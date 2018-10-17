@@ -8,6 +8,7 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import LogoutScreen from '../screens/LogoutScreen';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -15,20 +16,19 @@ const HomeStack = createStackNavigator({
   headerMode: 'none',
 });
 
-HomeStack.navigationOptions = {
-  headerMode: 'none',
-  tabBarLabel: 'Home',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
-      }
-    />
-  ),
-};
+// HomeStack.navigationOptions = {
+//   tabBarLabel: 'Homee',
+//   tabBarIcon: ({ focused }) => (
+//     <TabBarIcon
+//       focused={focused}
+//       name={
+//         Platform.OS === 'ios'
+//           ? `ios-information-circle${focused ? '' : '-outline'}`
+//           : 'md-information-circle'
+//       }
+//     />
+//   ),
+// };
 
 const LinksStack = createStackNavigator({
   Links: LinksScreen,
@@ -71,12 +71,13 @@ const CustomDrawerComponent = (props) => (
 
 const { width } = Dimensions.get('window');
 export default createDrawerNavigator({
-  Home: HomeStack,
+  Home: HomeScreen,
   Profile:LinksScreen,
   Settings:SettingsScreen,
+  Logout:LogoutScreen
 }, {
   contentComponent: CustomDrawerComponent,
-  drawerWidth: width,
+  // drawerWidth: width,
   contentOptions: {
     activeTintColor: 'orange'
   }

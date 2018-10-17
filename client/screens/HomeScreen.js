@@ -11,15 +11,15 @@ import {
   View,
   StatusBar
 } from 'react-native';
+import { FontAwesome } from "react-native-vector-icons";
 import { Header,Left,Right,Icon } from 'native-base';
-import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     drawerIcon: (tintColor) => (
-      <Icon name="home" style={{fontSize: 24, color: tintColor}}/>
+      <FontAwesome name="home" style={{fontSize: 24, color: 'orange'}}/>
     )
   };
 
