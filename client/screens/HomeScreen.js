@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import { FontAwesome } from "react-native-vector-icons";
 import { Header,Left,Right,Icon } from 'native-base';
-import MapView from 'react-native-maps';
+import { MapView } from "expo";
 import { MonoText } from '../components/StyledText';
 
 export default class HomeScreen extends React.Component {
@@ -44,14 +44,16 @@ export default class HomeScreen extends React.Component {
           </Left>
         </Header>
         <MapView
+          style={{
+            flex: 1
+          }}
           initialRegion={{
             latitude: 37.78825,
             longitude: -122.4324,
             latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
+            longitudeDelta: 0.0421
           }}
         />
-
         <View style={styles.tabBarInfoContainer}>
           <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
 
