@@ -16,6 +16,7 @@ import { Header,Left,Right,Icon } from 'native-base';
 import { MapView } from "expo";
 import { MonoText } from '../components/StyledText';
 import { Dimensions } from 'react-native';
+import SearchBox from './Searchbox';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -27,7 +28,7 @@ export default class HomeScreen extends React.Component {
   state = {
     isLoading: true,
     markers: [],
-    coords: {latitude: 0,longitude: 0, latitudeDelta: 0,longitudeDelta: 0 },
+    coords: { latitude: 0,longitude: 0, latitudeDelta: 0,longitudeDelta: 0 },
   };
 
   componentDidMount() {
@@ -55,8 +56,6 @@ export default class HomeScreen extends React.Component {
   }
 
   render() {
-    const { latitude, longitude, latitudeDelta, longitudeDelta } = this.state.coords;
-
     return (
       <View style={styles.container}>
         <Header>
@@ -97,6 +96,7 @@ export default class HomeScreen extends React.Component {
         })}
       </MapView>
       :null }
+      <SearchBox />
         <View style={styles.tabBarInfoContainer}>
           <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
 
