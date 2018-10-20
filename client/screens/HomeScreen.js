@@ -15,6 +15,7 @@ import { FontAwesome } from "react-native-vector-icons";
 import { Header,Left,Right,Icon } from 'native-base';
 import { MapView } from "expo";
 import { MonoText } from '../components/StyledText';
+import { Dimensions } from 'react-native';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -23,19 +24,39 @@ export default class HomeScreen extends React.Component {
     )
   };
 
-  login = (e) => {
-    // e.preventDefault();
-    // const body = data;
-    axios.post('http://localhost:8000/')
-    .then(res => {
-      AsyncStorage.setItem('token', res.data.token);
-      this.props.navigation.navigate('tabNav');
-    })
-    .catch((err) => console.log(err))
+  state = {
+    isLoading: true,
+    markers: [],
+    coords: {latitude: 0,longitude: 0, latitudeDelta: 0,longitudeDelta: 0 },
   };
 
+  componentDidMount() {
+    this.currentLocation()
+  }
+
+  currentLocation = () => {
+    const { width, height } = Dimensions.get('window');
+    const ASPECT_RATIO = width / height;
+    const latDelta = 0.0922;
+    const longDelta = ASPECT_RATIO * latDelta;
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.setState({ 
+        coords: 
+          {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+            latitudeDelta: latDelta,
+            longitudeDelta: longDelta,
+          }
+      }),
+      (error) => console.warn(error.message),
+      { enableHighAccuracy: false, timeout: 10000 }
+    });
+  }
+
   render() {
-    this.login()
+    const { latitude, longitude, latitudeDelta, longitudeDelta } = this.state.coords;
+
     return (
       <View style={styles.container}>
         <Header>
@@ -43,17 +64,39 @@ export default class HomeScreen extends React.Component {
             <Icon style={{ justifyContent: 'center'}} name="menu" onPress={() => this.props.navigation.openDrawer()}/>
           </Left>
         </Header>
-        <MapView
-          style={{
-            flex: 1
-          }}
-          initialRegion={{
-            latitude: 37.78825,
-            longitude: -122.4324,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421
-          }}
-        />
+      {this.state.coords ? 
+      <MapView
+        style={{ flex: 1 }}
+        provider="google"
+        region={this.state.coords}
+      >
+      <MapView.Marker
+        // key={index}
+        coordinate={this.state.coords}
+        title='This is your home'
+        description={'This is home'}
+        pinColor="green"
+      />
+        {this.state.isLoading ? null : this.state.markers.map((marker, index) => {
+          const coords = {
+              latitude: marker.latitude,
+              longitude: marker.longitude,
+          };
+
+          const metadata = `Status: ${marker.statusValue}`;
+
+          return (
+              <MapView.Marker
+                 key={index}
+                 coordinate={coords}
+                 title={marker.stationName}
+                 description={metadata}
+                 pinColor="green"
+              />
+          );
+        })}
+      </MapView>
+      :null }
         <View style={styles.tabBarInfoContainer}>
           <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
 
