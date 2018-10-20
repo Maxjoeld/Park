@@ -12,7 +12,7 @@ import {
   StatusBar
 } from 'react-native';
 import { FontAwesome } from "react-native-vector-icons";
-import { Header,Left,Right,Icon } from 'native-base';
+import { Header,Left,Right, Body, Icon } from 'native-base';
 import { MapView } from "expo";
 import { MonoText } from '../components/StyledText';
 import { Dimensions } from 'react-native';
@@ -29,6 +29,7 @@ export default class HomeScreen extends React.Component {
     isLoading: true,
     markers: [],
     coords: { latitude: 0,longitude: 0, latitudeDelta: 0,longitudeDelta: 0 },
+    searching: true,
   };
 
   componentDidMount() {
@@ -60,8 +61,15 @@ export default class HomeScreen extends React.Component {
       <View style={styles.container}>
         <Header>
           <Left>
-            <Icon style={{ justifyContent: 'center'}} name="menu" onPress={() => this.props.navigation.openDrawer()}/>
+            <Icon name="menu" onPress={() => this.props.navigation.openDrawer()}/>
           </Left>
+          <Body>
+            <View style={{ display: 'flex', flexDirection: 'row'}}>
+              <FontAwesome name='car' size={15} color='#FF5E3A'/>
+              <Text style={{ marginLeft: 2 }}>Searching</Text>
+            </View>
+          </Body>
+          <Right />
         </Header>
       {this.state.coords ? 
       <MapView
