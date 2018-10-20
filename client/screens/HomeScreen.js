@@ -21,7 +21,7 @@ import SearchBox from './Searchbox';
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     drawerIcon: (tintColor) => (
-      <FontAwesome name="home" style={{fontSize: 24, color: 'orange'}}/>
+      <FontAwesome name="home" style={{fontSize: 24, color: '#FF5E3A'}}/>
     )
   };
 
@@ -29,7 +29,7 @@ export default class HomeScreen extends React.Component {
     isLoading: true,
     markers: [],
     coords: { latitude: 0,longitude: 0, latitudeDelta: 0,longitudeDelta: 0 },
-    searching: true,
+    searching: false,
   };
 
   componentDidMount() {
@@ -56,7 +56,14 @@ export default class HomeScreen extends React.Component {
     });
   }
 
+  toggleState = () => {
+    this.setState({
+      searching: !this.state.searching
+    })
+  }
+
   render() {
+    const { searching } = this.state;
     return (
       <View style={styles.container}>
         <Header>
@@ -66,12 +73,16 @@ export default class HomeScreen extends React.Component {
           <Body>
             <View style={{ display: 'flex', flexDirection: 'row'}}>
               <FontAwesome name='car' size={15} color='#FF5E3A'/>
-              <Text style={{ marginLeft: 2 }}>Searching</Text>
+              {searching ?
+                <Text onPress={() => this.toggleState()} style={{ marginLeft: 2 }}>Searching</Text>  
+              : <Text onPress={() => this.toggleState()} style={{ marginLeft: 2 }}>Leaving</Text>     
+              }
             </View>
           </Body>
           <Right />
         </Header>
-      {this.state.coords ? 
+      {this.state.coords ?
+
       <MapView
         style={{ flex: 1 }}
         provider="google"
@@ -84,30 +95,11 @@ export default class HomeScreen extends React.Component {
         description={'This is home'}
         pinColor="green"
       />
-        {this.state.isLoading ? null : this.state.markers.map((marker, index) => {
-          const coords = {
-              latitude: marker.latitude,
-              longitude: marker.longitude,
-          };
-
-          const metadata = `Status: ${marker.statusValue}`;
-
-          return (
-              <MapView.Marker
-                 key={index}
-                 coordinate={coords}
-                 title={marker.stationName}
-                 description={metadata}
-                 pinColor="green"
-              />
-          );
-        })}
       </MapView>
       :null }
-      <SearchBox />
+      <SearchBox searching={searching} />
         <View style={styles.tabBarInfoContainer}>
           <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
-
           <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
             <MonoText style={styles.codeHighlightText}>navigation/MainTabNavigator.js</MonoText>
           </View>

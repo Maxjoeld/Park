@@ -6,7 +6,7 @@ import { FontAwesome } from "react-native-vector-icons";
 export default class SettingsScreen extends React.Component {
   static navigationOptions = {
     drawerIcon: (tintColor) => (
-      <FontAwesome name="cog" style={{fontSize: 24, color: 'orange'}}/>
+      <FontAwesome name="cog" style={{fontSize: 24, color: '#FF5E3A'}}/>
     )
   };
 

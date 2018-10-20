@@ -79,6 +79,6 @@ export default createDrawerNavigator({
   contentComponent: CustomDrawerComponent,
   // drawerWidth: width,
   contentOptions: {
-    activeTintColor: 'orange'
+    activeTintColor: '#FF5E3A'
   }
 });
