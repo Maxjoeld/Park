@@ -16,6 +16,7 @@ import { Header,Left,Right, Body, Icon } from 'native-base';
 import { MapView } from "expo";
 import { MonoText } from '../components/StyledText';
 import { Dimensions } from 'react-native';
+var width = Dimensions.get("window").width; 
 import SearchBox from './Searchbox';
 import {
   MKSlider,
@@ -89,7 +90,8 @@ export default class HomeScreen extends React.Component {
               }
             </View>
           </Body>
-          <Right />
+          <Right>
+          </Right>
         </Header>
       {this.state.coords ?
       <MapView
@@ -131,18 +133,20 @@ export default class HomeScreen extends React.Component {
               />
           );
         })}
-        <MKSlider
-          ref="sliderWithValue"
-          min={10}
-          max={4000}
-          value={this.state.radius}
-          style={styles.slider}
-          onChange={(value) => this.changeRadius(value)}
-          />
-          <Text>{this.state.radius}</Text>
       </MapView>
       :null }
-      {/* <SearchBox searching={searching} /> */}
+      <View style={styles.slideView}>
+      <Text style={styles.slideText}>Radius:{Math.round(this.state.radius)}</Text>
+       <MKSlider
+            ref="sliderWithValue"
+            min={10}
+            max={4000}
+            value={(this.state.radius)}
+            style={styles.slider}
+            onChange={(value) => this.changeRadius(value)}
+            />
+      </View>
+      <SearchBox searching={searching} />
         <View style={styles.tabBarInfoContainer}>
           <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
           <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
@@ -191,10 +195,29 @@ const styles = StyleSheet.create({
     lineHeight: 19,
     textAlign: 'center',
   },
+  slideView: {
+    width: width,
+    position: 'absolute',
+    top: 180,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    // backgroundColor:"blue",
+    opacity:0.8,
+  },
   slider: {
     width: 130,
-    position: 'absolute',
-    top: 90,
+    backgroundColor:"#fff",
+    opacity:0.8,
+    height: 30,
+  },
+  slideText: {
+    width: 'auto',
+    height: 30,
+    display: 'flex',
+    justifyContent: 'center',
+    backgroundColor:"#fff",
+    opacity:0.8,
   },
   tabBarInfoContainer: {
     position: 'absolute',
