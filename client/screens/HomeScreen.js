@@ -17,6 +17,9 @@ import { MapView } from "expo";
 import { MonoText } from '../components/StyledText';
 import { Dimensions } from 'react-native';
 import SearchBox from './Searchbox';
+import {
+  MKSlider,
+} from 'react-native-material-kit';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -30,6 +33,7 @@ export default class HomeScreen extends React.Component {
     markers: [],
     coords: { latitude: 0,longitude: 0, latitudeDelta: 0,longitudeDelta: 0 },
     searching: false,
+    radius: 300,
   };
 
   componentDidMount() {
@@ -62,10 +66,14 @@ export default class HomeScreen extends React.Component {
     })
   }
 
+  changeRadius(value) {
+    this.setState({radius: value});
+  }
 
 
   render() {
     const { searching } = this.state;
+    console.log(this.state.radius);
     return (
       <View style={styles.container}>
         <Header>
@@ -92,22 +100,49 @@ export default class HomeScreen extends React.Component {
       <MapView.Marker
         // key={index}
         coordinate={this.state.coords}
-        title='This is your home'
-        description={'This is home'}
+        title='Home'
+        // description={'This is home'}
         pinColor="green"
       />
       <MapView.Circle
-                // key = { (this.state.currentLongitude + this.state.currentLongitude).toString() }
-                center = { this.state.coords }
-                radius = { 500 }
-                strokeWidth = { 1 }
-                strokeColor = { '#1a66ff' }
-                fillColor = { 'rgba(230,238,255,0.5)' }
-                // onRegionChangeComplete = { this.onRegionChangeComplete.bind(this) }
+        // key = { (this.state.currentLongitude + this.state.currentLongitude).toString() }
+        center = { this.state.coords }
+        radius = { this.state.radius }
+        strokeWidth = { 1 }
+        strokeColor = { '#1a66ff' }
+        fillColor = { 'rgba(230,238,255,0.5)' }
+        // onRegionChangeComplete = { this.onRegionChangeComplete.bind(this) }
         />
+      {this.state.isLoading ? null : this.state.markers.map((marker, index) => {
+          const coords = {
+              latitude: marker.latitude,
+              longitude: marker.longitude,
+          };
+
+          const metadata = `Status: ${marker.statusValue}`;
+
+          return (
+              <MapView.Marker
+                 key={index}
+                 coordinate={coords}
+                 title={marker.stationName}
+                 description={metadata}
+                 pinColor="green"
+              />
+          );
+        })}
+        <MKSlider
+          ref="sliderWithValue"
+          min={10}
+          max={4000}
+          value={this.state.radius}
+          style={styles.slider}
+          onChange={(value) => this.changeRadius(value)}
+          />
+          <Text>{this.state.radius}</Text>
       </MapView>
       :null }
-      <SearchBox searching={searching} />
+      {/* <SearchBox searching={searching} /> */}
         <View style={styles.tabBarInfoContainer}>
           <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
           <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
@@ -147,6 +182,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    position: 'relative',
   },
   developmentModeText: {
     marginBottom: 20,
@@ -155,41 +191,10 @@ const styles = StyleSheet.create({
     lineHeight: 19,
     textAlign: 'center',
   },
-  contentContainer: {
-    paddingTop: 30,
-  },
-  welcomeContainer: {
-    alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 20,
-  },
-  welcomeImage: {
-    width: 100,
-    height: 80,
-    resizeMode: 'contain',
-    marginTop: 3,
-    marginLeft: -10,
-  },
-  getStartedContainer: {
-    alignItems: 'center',
-    marginHorizontal: 50,
-  },
-  homeScreenFilename: {
-    marginVertical: 7,
-  },
-  codeHighlightText: {
-    color: 'rgba(96,100,109, 0.8)',
-  },
-  codeHighlightContainer: {
-    backgroundColor: 'rgba(0,0,0,0.05)',
-    borderRadius: 3,
-    paddingHorizontal: 4,
-  },
-  getStartedText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    lineHeight: 24,
-    textAlign: 'center',
+  slider: {
+    width: 130,
+    position: 'absolute',
+    top: 90,
   },
   tabBarInfoContainer: {
     position: 'absolute',
