@@ -14,7 +14,7 @@ const SearchBox = (props) => {
           <Text style={styles.label}>Leaving parking spot</Text>
           <InputGroup>
             <FontAwesome name='search' size={15} color='#FF5E3A'/>
-            <Input  style={styles.inputSearch} placeholder='Enter your current location' />
+            <Input style={styles.inputSearch} placeholder='Enter your current location' />
           </InputGroup>
         </View>
       : <View style={styles.inputWrapper}>
@@ -25,9 +25,8 @@ const SearchBox = (props) => {
           </InputGroup>
         </View>
       }
-    </View>
-    
-   );
+    </View>   
+  );
 }
 
 export default SearchBox;

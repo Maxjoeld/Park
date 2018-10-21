@@ -62,6 +62,8 @@ export default class HomeScreen extends React.Component {
     })
   }
 
+
+
   render() {
     const { searching } = this.state;
     return (
@@ -82,7 +84,6 @@ export default class HomeScreen extends React.Component {
           <Right />
         </Header>
       {this.state.coords ?
-
       <MapView
         style={{ flex: 1 }}
         provider="google"
@@ -95,6 +96,15 @@ export default class HomeScreen extends React.Component {
         description={'This is home'}
         pinColor="green"
       />
+      <MapView.Circle
+                // key = { (this.state.currentLongitude + this.state.currentLongitude).toString() }
+                center = { this.state.coords }
+                radius = { 500 }
+                strokeWidth = { 1 }
+                strokeColor = { '#1a66ff' }
+                fillColor = { 'rgba(230,238,255,0.5)' }
+                // onRegionChangeComplete = { this.onRegionChangeComplete.bind(this) }
+        />
       </MapView>
       :null }
       <SearchBox searching={searching} />
