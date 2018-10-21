@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Text,TextInput, KeyBoard } from 'react-native';
 import { View, InputGroup, Input } from 'native-base';
 import { FontAwesome } from "react-native-vector-icons";
-import { Dropdown } from 'react-native-material-dropdown';
+import keys from '../token.js'
 import styles from './SearchStyles';
 
 class SearchBox extends Component {
@@ -11,16 +11,18 @@ class SearchBox extends Component {
     location: ''
    }
 
-  componentWillMount () {
-    // this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this._keyboardDidShow);
-    // this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this._keyboardDidHide);
+  locateQuery = () => {
+    console.log('made it')
+    let url = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
+    let address = url + this.state.location + `&key=${keys.mapKey}`;
+    console.log({location: address});
   }
 
-
-  locateQuery = () => {
-    let url = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
-    let address = url + this.state.location + process.env.MAP_KEY;
-    console.log(address);
+  handleKeyDown = (event) => {
+    if(event.nativeEvent.key === "return"){
+        console.log('hey')
+        dismissKeyboard();
+    }
   }
 
   render() {
@@ -38,6 +40,8 @@ class SearchBox extends Component {
                 name='location'
                 onChangeText={(location) => this.setState({ location })} 
                 placeholder='Enter your current location'
+                onKeyPress={this.handleKeyDown}
+                onSubmitEditing={() => this.locateQuery()} 
                 returnKeyType="search"
                 />
             </InputGroup>
