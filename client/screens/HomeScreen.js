@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-
+import { connect } from 'react-redux';
 import {
   Image,
   Platform,
@@ -18,11 +18,10 @@ import { MonoText } from '../components/StyledText';
 import { Dimensions } from 'react-native';
 var width = Dimensions.get("window").width; 
 import SearchBox from './Searchbox';
-import {
-  MKSlider,
-} from 'react-native-material-kit';
+import { MKSlider } from 'react-native-material-kit';
+import { currentLocation } from '../app/actions';
 
-export default class HomeScreen extends React.Component {
+class HomeScreen extends React.Component {
   static navigationOptions = {
     drawerIcon: (tintColor) => (
       <FontAwesome name="home" style={{fontSize: 24, color: '#FF5E3A'}}/>
@@ -32,34 +31,19 @@ export default class HomeScreen extends React.Component {
   state = {
     isLoading: true,
     markers: [],
-    coords: { latitude: 0,longitude: 0, latitudeDelta: 0,longitudeDelta: 0 },
     searching: false,
     radius: 300,
   };
 
   componentDidMount() {
-    this.currentLocation()
+    this.props.currentLocation()
   }
 
-  currentLocation = () => {
-    const { width, height } = Dimensions.get('window');
-    const ASPECT_RATIO = width / height;
-    const latDelta = 0.0222;
-    const longDelta = ASPECT_RATIO * latDelta;
-    navigator.geolocation.getCurrentPosition((position) => {
-      this.setState({ 
-        coords: 
-          {
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-            latitudeDelta: latDelta,
-            longitudeDelta: longDelta,
-          }
-      }),
-      (error) => console.warn(error.message),
-      { enableHighAccuracy: false, timeout: 10000 }
-    });
-  }
+  // changeCoords = (data) => {
+  //   this.setState({
+      
+  //   })
+  // }
 
   toggleState = () => {
     this.setState({
@@ -74,6 +58,7 @@ export default class HomeScreen extends React.Component {
 
   render() {
     const { searching } = this.state;
+    const { coords } = this.props;
     console.log(this.state.radius);
     return (
       <View style={styles.container}>
@@ -93,22 +78,22 @@ export default class HomeScreen extends React.Component {
           <Right>
           </Right>
         </Header>
-      {this.state.coords ?
+      {this.props.coords ?
       <MapView
         style={{ flex: 1 }}
         provider="google"
-        region={this.state.coords}
+        region={this.props.coords}
       >
       <MapView.Marker
         // key={index}
-        coordinate={this.state.coords}
+        coordinate={this.props.coords}
         title='Home'
         // description={'This is home'}
         pinColor="green"
       />
       <MapView.Circle
         // key = { (this.state.currentLongitude + this.state.currentLongitude).toString() }
-        center = { this.state.coords }
+        center = { this.props.coords }
         radius = { this.state.radius }
         strokeWidth = { 1 }
         strokeColor = { '#1a66ff' }
@@ -181,6 +166,14 @@ export default class HomeScreen extends React.Component {
   }
 
 }
+
+const mapStateToProps = state => {
+  return {
+    coords: state.locationReducer.coords,
+  };
+};
+
+export default connect(mapStateToProps, {currentLocation})(HomeScreen);
 
 const styles = StyleSheet.create({
   container: {

@@ -15,9 +15,17 @@ class SearchBox extends Component {
     console.log('made it')
     let url = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
     let address = url + this.state.location + `&key=${keys.mapKey}`;
-    console.log({location: address});
+    axios.get(address)
+      .then(res => {
+        const latitude = res.data.results[0].geometry.location.lat;
+        const longitude = res.data.results[0].geometry.location.lng;
+        this.setState({
+
+        })
+      })
+      .catch(err => console.log('error'))
   }
-  
+
 
   handleKeyDown = (event) => {
     if(event.nativeEvent.key === "return"){
