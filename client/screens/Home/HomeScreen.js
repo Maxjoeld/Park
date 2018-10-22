@@ -1,25 +1,15 @@
 import React from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
-import {
-  Image,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  StatusBar
-} from 'react-native';
+import { StyleSheet, Text, Modal, TouchableHighlight, View, Alert} from 'react-native';
 import { FontAwesome } from "react-native-vector-icons";
 import { Footer, Header, Left, Right, Body, Icon, Button } from 'native-base';
 import { MapView } from "expo";
-import { MonoText } from '../../components/StyledText';
 import { Dimensions } from 'react-native';
 var width = Dimensions.get("window").width; 
 import SearchBox from './Searchbox';
 import { MKSlider } from 'react-native-material-kit';
 import { currentLocation, locateQuery } from '../../app/actions';
+
 
 class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -29,11 +19,11 @@ class HomeScreen extends React.Component {
   };
 
   state = {
-
     isLoading: true,
     markers: [],
     searching: false,
     radius: 300,
+    loadAnim: false,
   };
 
   componentDidMount() {
@@ -46,10 +36,20 @@ class HomeScreen extends React.Component {
     })
   }
 
-  changeRadius(value) {
+  changeRadius = (value) => {
     this.setState({radius: value});
   }
 
+  loaderSearchAnim = () => {
+    this.setState({
+      loadAnim: true
+    });
+    setTimeout(() => this.setState({ loadAnim: false }), 1000);
+  }
+
+  // returntext = () => {
+  //   return setTimeout(() => <Text style={styles.animation}>Hey</Text>, 1000);
+  // }
 
   render() {
     const { searching } = this.state;
@@ -67,21 +67,32 @@ class HomeScreen extends React.Component {
           <Right>
           </Right>
         </Header>
-      {this.props.coords ?
+        {this.state.loadAnim ? 
+          <Modal
+           animationType="fade"
+          //  transparent={false}
+          >
+            <View style={styles.animation}>
+              {/* <Text style={{fontSize: 40}}></Text> */}
+              <FontAwesome name='car' size={50} color='#FF5E3A'/>
+            </View>
+          </Modal>
+        : null}
+      {coords ?
       <MapView
         style={{ flex: 1 }}
         provider="google"
-        region={this.props.coords}
+        region={coords}
       >
       <MapView.Marker
         // key={index}
-        coordinate={this.props.coords}
+        coordinate={coords}
         title='Home'
         // description={'This is home'}
         pinColor="green"
       />
       <MapView.Circle
-        center = { this.props.coords }
+        center = { coords }
         radius = { this.state.radius }
         strokeWidth = { 1 }
         strokeColor = { '#1a66ff' }
@@ -130,7 +141,11 @@ class HomeScreen extends React.Component {
                  />
           </View>
           <View >
-            <Button info><Text style={{ color: 'white', paddingLeft:10, paddingRight: 10}}>Search</Text></Button>
+            <Button info
+              onPress={() => this.loaderSearchAnim('show')}
+            >
+              <Text style={{ color: 'white', paddingLeft:10, paddingRight: 10}}>Search</Text>
+            </Button>
           </View>
         </Footer>
       </View>
@@ -152,9 +167,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     position: 'relative',
   },
-  button: {
-    // justifyContent: 'center',
-    // alignItems: 'center',
+  animation: {
+    position: 'absolute',
+    top: 60,
+    zIndex: 10,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    display: 'flex',
+    justifyContent: 'center', 
+    alignItems: 'center'
   },
   slideView: {
     justifyContent: 'center',

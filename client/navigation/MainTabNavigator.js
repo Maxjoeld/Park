@@ -61,7 +61,7 @@ const CustomDrawerComponent = (props) => (
   <SafeAreaView style={{ flex: 1 }}>
     <View style={{height:150,backgroundColor:'white', alignItems: 'center', 
     justifyContent:'center'}}>
-      <Text>Hey</Text>
+      <Text style={{ fontFamily: 'HelveticaNeue-Thin',fontSize: 50}}>Park</Text>
     </View>
     <ScrollView>
         <DrawerItems {...props} />
