@@ -19,7 +19,7 @@ import { Dimensions } from 'react-native';
 var width = Dimensions.get("window").width; 
 import SearchBox from './Searchbox';
 import { MKSlider } from 'react-native-material-kit';
-import { currentLocation } from '../app/actions';
+import { currentLocation, locateQuery } from '../app/actions';
 
 class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -29,6 +29,7 @@ class HomeScreen extends React.Component {
   };
 
   state = {
+
     isLoading: true,
     markers: [],
     searching: false,
@@ -38,12 +39,6 @@ class HomeScreen extends React.Component {
   componentDidMount() {
     this.props.currentLocation()
   }
-
-  // changeCoords = (data) => {
-  //   this.setState({
-      
-  //   })
-  // }
 
   toggleState = () => {
     this.setState({
@@ -92,7 +87,6 @@ class HomeScreen extends React.Component {
         pinColor="green"
       />
       <MapView.Circle
-        // key = { (this.state.currentLongitude + this.state.currentLongitude).toString() }
         center = { this.props.coords }
         radius = { this.state.radius }
         strokeWidth = { 1 }
@@ -131,7 +125,7 @@ class HomeScreen extends React.Component {
             onChange={(value) => this.changeRadius(value)}
             />
       </View>
-      <SearchBox searching={searching} />
+      <SearchBox searching={searching} locate={this.props.locateQuery} />
         <View style={styles.tabBarInfoContainer}>
           <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
           <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
@@ -141,30 +135,6 @@ class HomeScreen extends React.Component {
       </View>
     );
   }
-
-  _maybeRenderDevelopmentModeWarning() {
-    if (__DEV__) {
-      const learnMoreButton = (
-        <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
-          Learn more
-        </Text>
-      );
-
-      return (
-        <Text style={styles.developmentModeText}>
-          Development mode is enabled, your app will be slower but you can use useful development
-          tools. {learnMoreButton}
-        </Text>
-      );
-    } else {
-      return (
-        <Text style={styles.developmentModeText}>
-          You are not in development mode, your app will run at full speed.
-        </Text>
-      );
-    }
-  }
-
 }
 
 const mapStateToProps = state => {
@@ -173,20 +143,13 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {currentLocation})(HomeScreen);
+export default connect(mapStateToProps, { currentLocation, locateQuery })(HomeScreen);
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
     position: 'relative',
-  },
-  developmentModeText: {
-    marginBottom: 20,
-    color: 'rgba(0,0,0,0.4)',
-    fontSize: 14,
-    lineHeight: 19,
-    textAlign: 'center',
   },
   slideView: {
     width: width,

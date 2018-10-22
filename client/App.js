@@ -1,6 +1,5 @@
 import React from 'react';
-import { Platform, StatusBar, StyleSheet, View, SafeAreaView, ScrollView, Dimensions} from 'react-native';
-import { DrawerItems } from 'react-navigation';
+import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { AppLoading, Asset, Font, Icon } from 'expo';
 import AppNavigator from './navigation/AppNavigator';
 // Redux

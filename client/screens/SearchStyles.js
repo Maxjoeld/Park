@@ -24,7 +24,8 @@ const styles = {
         borderRadius:7
     },
     inputSearch:{
-        fontSize:14
+        fontSize:14,
+        textAlign: 'left',
     },
     label:{
         fontSize:10,

@@ -11,46 +11,23 @@ class SearchBox extends Component {
     location: ''
    }
 
-  locateQuery = () => {
-    console.log('made it')
-    let url = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
-    let address = url + this.state.location + `&key=${keys.mapKey}`;
-    axios.get(address)
-      .then(res => {
-        const latitude = res.data.results[0].geometry.location.lat;
-        const longitude = res.data.results[0].geometry.location.lng;
-        this.setState({
-
-        })
-      })
-      .catch(err => console.log('error'))
-  }
-
-
-  handleKeyDown = (event) => {
-    if(event.nativeEvent.key === "return"){
-        console.log('hey')
-        dismissKeyboard();
-    }
-  }
-
   render() {
-    console.log(this.state.location); 
+    const { location } = this.state; 
     return ( 
       <View style={styles.searchBox}>
         {!this.props.searching ?
           <View style={styles.inputWrapper}>
             <Text style={styles.label}>Leaving parking spot</Text>
-            <InputGroup>
-              <FontAwesome name='search' size={15} color='#FF5E3A'/>
-              <Input 
+            <InputGroup >
+              <FontAwesome name='search' style={{ paddingTop: 13}} size={15} color='#FF5E3A'/>
+              <Input
                 style={styles.inputSearch} 
                 value={this.state.location}
                 name='location'
-                onChangeText={(location) => this.setState({ location })} 
+                onChangeText={(location) => this.setState({ location })}
+                value={'Current Location'}
                 placeholder='Enter your current location'
-                onKeyPress={this.handleKeyDown}
-                onSubmitEditing={() => this.locateQuery()} 
+                onSubmitEditing={() => this.props.locate(location)}
                 returnKeyType="search"
                 />
             </InputGroup>
@@ -63,7 +40,8 @@ class SearchBox extends Component {
                 style={styles.inputSearch} 
                 value={this.state.location}
                 name='location'
-                onChangeText={(location) => this.setState({ location })} 
+                onChangeText={(location) => this.setState({ location })}
+                onSubmitEditing={() => this.props.locate(location)}
                 placeholder='Choose parking location'
                 returnKeyType="search"
                 />
