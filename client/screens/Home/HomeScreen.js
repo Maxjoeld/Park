@@ -1,14 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, Text, Modal, TouchableHighlight, View, Alert} from 'react-native';
+import { StyleSheet, Text, Modal, View, Alert} from 'react-native';
 import { FontAwesome } from "react-native-vector-icons";
 import { Footer, Header, Left, Right, Body, Icon, Button } from 'native-base';
 import { MapView } from "expo";
 import { Dimensions } from 'react-native';
-var width = Dimensions.get("window").width; 
 import SearchBox from './Searchbox';
 import { MKSlider } from 'react-native-material-kit';
 import { currentLocation, locateQuery } from '../../app/actions';
+var width = Dimensions.get("window").width; 
+import locations from './randomAddress';
 
 
 class HomeScreen extends React.Component {
@@ -19,10 +20,10 @@ class HomeScreen extends React.Component {
   };
 
   state = {
-    isLoading: true,
+    loadData: false,
     markers: [],
     searching: false,
-    radius: 300,
+    radius: 450,
     loadAnim: false,
   };
 
@@ -44,17 +45,12 @@ class HomeScreen extends React.Component {
     this.setState({
       loadAnim: true
     });
-    setTimeout(() => this.setState({ loadAnim: false }), 1000);
+    setTimeout(() => this.setState({ loadData: true, loadAnim: false }), 1000);
   }
-
-  // returntext = () => {
-  //   return setTimeout(() => <Text style={styles.animation}>Hey</Text>, 1000);
-  // }
-
   render() {
     const { searching } = this.state;
     const { coords } = this.props;
-    console.log(this.state.radius);
+    console.log(locations);
     return (
       <View style={styles.container}>
         <Header>
@@ -74,7 +70,7 @@ class HomeScreen extends React.Component {
           >
             <View style={styles.animation}>
               {/* <Text style={{fontSize: 40}}></Text> */}
-              <FontAwesome name='car' size={50} color='#FF5E3A'/>
+              <FontAwesome name='car' size={30} color='#FF5E3A'/>
             </View>
           </Modal>
         : null}
@@ -99,24 +95,21 @@ class HomeScreen extends React.Component {
         fillColor = { 'rgba(230,238,255,0.5)' }
         // onRegionChangeComplete = { this.onRegionChangeComplete.bind(this) }
         />
-      {this.state.isLoading ? null : this.state.markers.map((marker, index) => {
+      {this.state.loadData ? locations.map((marker, index) => {
           const coords = {
               latitude: marker.latitude,
               longitude: marker.longitude,
           };
-
-          const metadata = `Status: ${marker.statusValue}`;
-
           return (
               <MapView.Marker
                  key={index}
                  coordinate={coords}
+                 image={require('./car.png')}
                  title={marker.stationName}
-                 description={metadata}
                  pinColor="green"
               />
           );
-        })}
+        }) : null}
       </MapView>
       :null }
       <SearchBox searching={searching} locate={this.props.locateQuery} />
