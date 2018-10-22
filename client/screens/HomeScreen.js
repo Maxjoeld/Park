@@ -12,7 +12,7 @@ import {
   StatusBar
 } from 'react-native';
 import { FontAwesome } from "react-native-vector-icons";
-import { Footer, Header, Left, Right, Body, Icon } from 'native-base';
+import { Footer, Header, Left, Right, Body, Icon, Button } from 'native-base';
 import { MapView } from "expo";
 import { MonoText } from '../components/StyledText';
 import { Dimensions } from 'react-native';
@@ -129,6 +129,9 @@ class HomeScreen extends React.Component {
                  onChange={(value) => this.changeRadius(value)}
                  />
           </View>
+          <View >
+            <Button info><Text style={{ color: 'white', paddingLeft:10, paddingRight: 10}}>Search</Text></Button>
+          </View>
         </Footer>
       </View>
     );
@@ -148,6 +151,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     position: 'relative',
+  },
+  button: {
+    // justifyContent: 'center',
+    // alignItems: 'center',
   },
   slideView: {
     justifyContent: 'center',
