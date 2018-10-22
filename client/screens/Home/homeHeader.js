@@ -3,11 +3,11 @@ import { Header, Left, Right, Body, Icon } from 'native-base';
 import { Text } from 'react-native';
 
 
-const HomeHeader = () => {
+const HomeHeader = (props) => {
   return ( 
     <Header>
       <Left>
-        <Icon name="menu" onPress={() => this.props.navigation.openDrawer()}/>
+        <Icon name="menu" onPress={() => props.navigation.openDrawer()}/>
       </Left>
       <Body>
         <Text style={{ fontFamily: 'HelveticaNeue-Thin',fontSize: 30}}>Park</Text>

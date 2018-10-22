@@ -6,7 +6,7 @@ const styles = {
   },
   animation: {
     position: 'absolute',
-    top: 60,
+    top: 0,
     zIndex: 10,
     left: 0,
     right: 0,

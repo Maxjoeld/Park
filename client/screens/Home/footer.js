@@ -11,24 +11,23 @@ class FooterComp extends Component {
   render() { 
     return ( 
       <Footer style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center'}}>
-        {/* <Text>Hey</Text> */}
         <View style={{ display: 'flex', flexDirection: 'row'}}>
           <FontAwesome name='car' size={15} color='#FF5E3A'/>
           {this.props.searching ?
-            <Text onPress={() => this.props.toggleState()} style={{ marginLeft: 2 }}>Searching</Text>  
-          : <Text onPress={() => this.props.toggleState()} style={{ marginLeft: 2 }}>Leaving</Text>     
+            <Text onPress={() => this.props.toggleState('searching')} style={{ marginLeft: 2 }}>Searching</Text>  
+          : <Text onPress={() => this.props.toggleState('searching')} style={{ marginLeft: 2 }}>Leaving</Text>     
           }
         </View>
         <View style={styles.slideView}>
           <Text style={styles.slideText}>Radius:{Math.round(this.props.radius)}</Text>
           <MKSlider
-               ref="sliderWithValue"
-               min={10}
-               max={4000}
-               value={(this.props.radius)}
-               style={styles.slider}
-               onChange={(value) => this.props.changeRadius(value)}
-               />
+            ref="sliderWithValue"
+            min={10}
+            max={4000}
+            value={(this.props.radius)}
+            style={styles.slider}
+            onChange={(value) => this.props.toggleState('radius', value)}
+            />
         </View>
         <View >
           <Button info
