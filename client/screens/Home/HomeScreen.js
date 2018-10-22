@@ -14,12 +14,12 @@ import {
 import { FontAwesome } from "react-native-vector-icons";
 import { Footer, Header, Left, Right, Body, Icon, Button } from 'native-base';
 import { MapView } from "expo";
-import { MonoText } from '../components/StyledText';
+import { MonoText } from '../../components/StyledText';
 import { Dimensions } from 'react-native';
 var width = Dimensions.get("window").width; 
 import SearchBox from './Searchbox';
 import { MKSlider } from 'react-native-material-kit';
-import { currentLocation, locateQuery } from '../app/actions';
+import { currentLocation, locateQuery } from '../../app/actions';
 
 class HomeScreen extends React.Component {
   static navigationOptions = {

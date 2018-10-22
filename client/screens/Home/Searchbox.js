@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Text,TextInput, KeyBoard } from 'react-native';
 import { View, InputGroup, Input } from 'native-base';
 import { FontAwesome } from "react-native-vector-icons";
-import keys from '../token.js'
+import keys from '../../token.js'
 import styles from './SearchStyles';
 
 class SearchBox extends Component {
