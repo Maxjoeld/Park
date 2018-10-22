@@ -62,7 +62,7 @@ class HomeScreen extends React.Component {
             <Icon name="menu" onPress={() => this.props.navigation.openDrawer()}/>
           </Left>
           <Body>
-          
+            <Text style={{ fontFamily: 'HelveticaNeue-Thin',fontSize: 30}}>Park</Text>
           </Body>
           <Right>
           </Right>
