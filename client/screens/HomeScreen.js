@@ -12,7 +12,7 @@ import {
   StatusBar
 } from 'react-native';
 import { FontAwesome } from "react-native-vector-icons";
-import { Header,Left,Right, Body, Icon } from 'native-base';
+import { Footer, Header, Left, Right, Body, Icon } from 'native-base';
 import { MapView } from "expo";
 import { MonoText } from '../components/StyledText';
 import { Dimensions } from 'react-native';
@@ -62,13 +62,7 @@ class HomeScreen extends React.Component {
             <Icon name="menu" onPress={() => this.props.navigation.openDrawer()}/>
           </Left>
           <Body>
-            <View style={{ display: 'flex', flexDirection: 'row'}}>
-              <FontAwesome name='car' size={15} color='#FF5E3A'/>
-              {searching ?
-                <Text onPress={() => this.toggleState()} style={{ marginLeft: 2 }}>Searching</Text>  
-              : <Text onPress={() => this.toggleState()} style={{ marginLeft: 2 }}>Leaving</Text>     
-              }
-            </View>
+          
           </Body>
           <Right>
           </Right>
@@ -114,24 +108,28 @@ class HomeScreen extends React.Component {
         })}
       </MapView>
       :null }
-      <View style={styles.slideView}>
-      <Text style={styles.slideText}>Radius:{Math.round(this.state.radius)}</Text>
-       <MKSlider
-            ref="sliderWithValue"
-            min={10}
-            max={4000}
-            value={(this.state.radius)}
-            style={styles.slider}
-            onChange={(value) => this.changeRadius(value)}
-            />
-      </View>
       <SearchBox searching={searching} locate={this.props.locateQuery} />
-        <View style={styles.tabBarInfoContainer}>
-          <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
-          <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-            <MonoText style={styles.codeHighlightText}>navigation/MainTabNavigator.js</MonoText>
+        <Footer style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center'}}>
+          {/* <Text>Hey</Text> */}
+          <View style={{ display: 'flex', flexDirection: 'row'}}>
+            <FontAwesome name='car' size={15} color='#FF5E3A'/>
+            {searching ?
+              <Text onPress={() => this.toggleState()} style={{ marginLeft: 2 }}>Searching</Text>  
+            : <Text onPress={() => this.toggleState()} style={{ marginLeft: 2 }}>Leaving</Text>     
+            }
           </View>
-        </View>
+          <View style={styles.slideView}>
+            <Text style={styles.slideText}>Radius:{Math.round(this.state.radius)}</Text>
+            <MKSlider
+                 ref="sliderWithValue"
+                 min={10}
+                 max={4000}
+                 value={(this.state.radius)}
+                 style={styles.slider}
+                 onChange={(value) => this.changeRadius(value)}
+                 />
+          </View>
+        </Footer>
       </View>
     );
   }
@@ -152,66 +150,19 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   slideView: {
-    width: width,
-    position: 'absolute',
-    top: 180,
     justifyContent: 'center',
     alignItems: 'center',
-    flexDirection: 'row',
-    // backgroundColor:"blue",
     opacity:0.8,
   },
   slider: {
     width: 130,
-    backgroundColor:"#fff",
     opacity:0.8,
     height: 30,
   },
   slideText: {
     width: 'auto',
-    height: 30,
     display: 'flex',
     justifyContent: 'center',
-    backgroundColor:"#fff",
     opacity:0.8,
-  },
-  tabBarInfoContainer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    ...Platform.select({
-      ios: {
-        shadowColor: 'black',
-        shadowOffset: { height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-      },
-      android: {
-        elevation: 20,
-      },
-    }),
-    alignItems: 'center',
-    backgroundColor: '#fbfbfb',
-    paddingVertical: 20,
-  },
-  tabBarInfoText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    textAlign: 'center',
-  },
-  navigationFilename: {
-    marginTop: 5,
-  },
-  helpContainer: {
-    marginTop: 15,
-    alignItems: 'center',
-  },
-  helpLink: {
-    paddingVertical: 15,
-  },
-  helpLinkText: {
-    fontSize: 14,
-    color: '#2e78b7',
   },
 });
