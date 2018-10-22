@@ -17,6 +17,7 @@ class SearchBox extends Component {
     let address = url + this.state.location + `&key=${keys.mapKey}`;
     console.log({location: address});
   }
+  
 
   handleKeyDown = (event) => {
     if(event.nativeEvent.key === "return"){

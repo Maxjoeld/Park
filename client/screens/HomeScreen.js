@@ -44,7 +44,7 @@ export default class HomeScreen extends React.Component {
   currentLocation = () => {
     const { width, height } = Dimensions.get('window');
     const ASPECT_RATIO = width / height;
-    const latDelta = 0.0922;
+    const latDelta = 0.0222;
     const longDelta = ASPECT_RATIO * latDelta;
     navigator.geolocation.getCurrentPosition((position) => {
       this.setState({ 
