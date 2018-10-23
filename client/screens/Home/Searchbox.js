@@ -5,7 +5,7 @@ import Text from '../MyText';
 import { View, InputGroup, Input } from 'native-base';
 import { FontAwesome } from "react-native-vector-icons";
 import keys from '../../token.js'
-import styles from './SearchStyles';
+import styles from './styles/searchStyles';
 
 class SearchBox extends Component {
   state = { 

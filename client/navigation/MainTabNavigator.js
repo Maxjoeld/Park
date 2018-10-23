@@ -4,7 +4,7 @@ import { createDrawerNavigator,createStackNavigator, createBottomTabNavigator } 
 import { Text, View, SafeAreaView, ScrollView, Dimensions} from 'react-native';
 import { DrawerItems } from 'react-navigation';
 
-import TabBarIcon from '../components/TabBarIcon';
+import TabBarIcon from '../components/TabBarsIcon';
 import HomeScreen from '../screens/Home/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';

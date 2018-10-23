@@ -5,7 +5,7 @@ import { FontAwesome } from "react-native-vector-icons";
 import Text from '../MyText';
 
 import { MKSlider } from 'react-native-material-kit';
-import styles from './homeStyles';
+import styles from './styles/homeStyles';
 
 class FooterComp extends Component {
   state = {  }
