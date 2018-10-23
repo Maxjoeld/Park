@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, View} from 'react-native';
 import { Footer, Button } from 'native-base';
 import { FontAwesome } from "react-native-vector-icons";
+import Text from './MyText';
 
 import { MKSlider } from 'react-native-material-kit';
 import styles from './homeStyles';
@@ -26,7 +27,7 @@ class FooterComp extends Component {
             max={4000}
             value={(this.props.radius)}
             style={styles.slider}
-            onChange={(value) => this.props.toggleState('radius', value)}
+            onChange={(value) => this.props.toggleState('radius')}
             />
         </View>
         <View >

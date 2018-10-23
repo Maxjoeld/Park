@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Modal, View, Text} from 'react-native';
+import { Modal, View } from 'react-native';
 import { FontAwesome } from "react-native-vector-icons";
 import { Button } from 'native-base';
 import Mod from "react-native-modal";
+import Text from './MyText';
 
 import FooterComp from './footer'
 import SearchBox from './Searchbox';
@@ -52,6 +53,7 @@ class HomeScreen extends React.Component {
     }), 1000);
     setTimeout(() => this.setState({ visible: true }), 1500);
   }
+
   render() {
     const { visible, searching, radius, loadData,loadCarAnimation } = this.state;
     const { coords } = this.props;
@@ -65,22 +67,25 @@ class HomeScreen extends React.Component {
             </View>
           </Modal>
         : null}
-        {/* {foundUser ? */}
         <Mod isVisible={visible}>
           <View style={styles.animation}>
-            <View style={{ width: '100%',height: '40%', backgroundColor: 'white', opacity:0.9}}>
-              <Text>Found a user 5 minutes away !</Text>
-              <Text>Would you like to notify the user</Text>
-              <Button success onPress={() => this.toggleState('foundUser')}>
-                <Text>Yes</Text>
-              </Button>
-              <Button style={{ width: 50}}success onPress={() => this.toggleState('foundUser')}>
-                <Text>Cancel</Text>
-              </Button>
+            <View style={styles.modalBox}>
+              <View style={{ flexDirection: 'row', marginTop:5, backgroundColor: 'yellow', alignItems: 'center'}}>
+                <FontAwesome style={{ backgroundColor:'maroon',marginLeft: 10}} name='check-circle' size={30} color='#FF5E3A' />
+                <Text style={{ fontSize: 16, marginLeft: 20}}>Found a user 5 minutes away !</Text>
+              </View>
+              <Text style={{ marginBottom: 10}}>Would you like to notify the user</Text>
+              <View style={{display: 'flex', flexDirection:'row', justifyContent: 'flex-end',}}>
+                <Text style={{ width: 80}}success onPress={() => this.toggleState('foundUser')}>
+                  <Text>Cancel</Text>
+                </Text>
+                <Text style={{ width: 80}} onPress={() => this.toggleState('foundUser')}>
+                  <Text>Ok</Text>
+                </Text>
+              </View>
             </View>
           </View>
         </Mod>
-        : null}
         {coords ? <Map coords={coords} radius={radius} loadData={loadData}/> : null }
         <SearchBox searching={searching} locate={this.props.locateQuery}/>
         <FooterComp

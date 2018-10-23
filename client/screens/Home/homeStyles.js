@@ -31,6 +31,12 @@ const styles = {
     justifyContent: 'center',
     opacity:0.8,
   },
+  modalBox: {
+    width: '100%',
+    height: '40%', 
+    backgroundColor: 'white',
+    opacity:0.9,
+  }
 };
 
 export default styles;
