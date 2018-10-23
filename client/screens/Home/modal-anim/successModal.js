@@ -3,8 +3,8 @@ import { View } from 'react-native';
 import { FontAwesome } from "react-native-vector-icons";
 import Modal from "react-native-modal";
 
-import styles from './styles/homeStyles';
-import Text from '../MyText';
+import styles from '../styles/homeStyles';
+import Text from '../../MyText';
 
 const SuccessModal = (props) => {
   return ( 

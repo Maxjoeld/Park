@@ -1,6 +1,7 @@
 import React from 'react';
 import { Modal, View } from 'react-native';
 import { FontAwesome } from "react-native-vector-icons";
+import styles from '../styles/homeStyles';
 
 const CarAnimation = () => {
   return ( 

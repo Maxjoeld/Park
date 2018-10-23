@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { StyleSheet, View} from 'react-native';
 import { Footer, Button } from 'native-base';
 import { FontAwesome } from "react-native-vector-icons";
-import Text from '../MyText';
+import Text from '../../MyText';
 
 import { MKSlider } from 'react-native-material-kit';
-import styles from './styles/homeStyles';
+import styles from '../styles/homeStyles';
 
 class FooterComp extends Component {
   state = {  }

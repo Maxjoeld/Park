@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import { Modal, View } from 'react-native';
 import { FontAwesome } from "react-native-vector-icons";
 
-import Footer from './footer'
+import Footer from './template/footer'
 import SearchBox from './searchbox';
-import HomeHeader from './homeHeader';
-import Map from './map';
-import SuccessModal from './successModal';
-import CarAnimation from './carAnimation';
+import HomeHeader from './template/homeHeader';
+import Map from './map/map';
+import SuccessModal from './modal-anim/successModal';
+import CarAnimation from './modal-anim/carAnimation';
 import { currentLocation, locateQuery } from '../../app/actions';
 import styles from './styles/homeStyles';
 
