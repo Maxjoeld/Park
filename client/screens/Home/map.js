@@ -19,7 +19,7 @@ const Map = (props) => {
         center = { props.coords }
         radius = { props.radius }
         strokeWidth = { 1 }
-        strokeColor = { '#1a66ff' }
+        strokeColor = { '#4CA497' }
         fillColor = { 'rgba(230,238,255,0.5)' }
         // onRegionChangeComplete = { this.onRegionChangeComplete.bind(this) }
         />
@@ -34,7 +34,7 @@ const Map = (props) => {
                coordinate={coords}
                image={require('./car.png')}
                title={marker.stationName}
-               pinColor="green"
+               pinColor="#4CA497"
             />
           );
       }) : null}

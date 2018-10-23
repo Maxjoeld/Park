@@ -4,7 +4,7 @@ import { Modal, View } from 'react-native';
 import { FontAwesome } from "react-native-vector-icons";
 import { Button } from 'native-base';
 import Mod from "react-native-modal";
-import Text from './MyText';
+import Text from '../MyText';
 
 import FooterComp from './footer'
 import SearchBox from './Searchbox';
@@ -16,7 +16,7 @@ import styles from './homeStyles';
 class HomeScreen extends React.Component {
   static navigationOptions = {
     drawerIcon: (tintColor) => (
-      <FontAwesome name="home" style={{fontSize: 24, color: '#FF5E3A'}}/>
+      <FontAwesome name="home" style={{fontSize: 24, color: '#4CA497'}}/>
     )
   };
   
@@ -70,13 +70,15 @@ class HomeScreen extends React.Component {
         <Mod isVisible={visible}>
           <View style={styles.animation}>
             <View style={styles.modalBox}>
-              <View style={{ flexDirection: 'row', marginTop:5, backgroundColor: 'yellow', alignItems: 'center'}}>
-                <FontAwesome style={{ backgroundColor:'maroon',marginLeft: 10}} name='check-circle' size={30} color='#FF5E3A' />
-                <Text style={{ fontSize: 16, marginLeft: 20}}>Found a user 5 minutes away !</Text>
+              <View style={{ flexDirection: 'row', marginTop:10, alignItems: 'center'}}>
+                <FontAwesome style={{ marginLeft: 10 }} name='check-circle' size={50} color='#4CA497' />
+                <Text style={{ fontFamily: 'HelveticaNeue-Medium',fontSize: 18, marginLeft: 20}}>Found a user 5 minutes away</Text>
               </View>
-              <Text style={{ marginBottom: 10}}>Would you like to notify the user</Text>
-              <View style={{display: 'flex', flexDirection:'row', justifyContent: 'flex-end',}}>
-                <Text style={{ width: 80}}success onPress={() => this.toggleState('foundUser')}>
+              <View style={{ marginTop: 20, justifyContent: 'center', alignItems:'center'}}>
+                <Text style={{ fontSize: 16, marginBottom: 1 }}>Would you like to notify the user</Text>
+              </View>
+              <View style={{display: 'flex', flexDirection:'row', justifyContent: 'flex-end', marginTop: 20}}>
+                <Text style={{ color:'grey', width: 80}}success onPress={() => this.toggleState('foundUser')}>
                   <Text>Cancel</Text>
                 </Text>
                 <Text style={{ width: 80}} onPress={() => this.toggleState('foundUser')}>

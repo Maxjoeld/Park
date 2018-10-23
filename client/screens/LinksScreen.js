@@ -6,7 +6,7 @@ import { FontAwesome } from "react-native-vector-icons";
 export default class LinksScreen extends React.Component {
   static navigationOptions = {
     drawerIcon: (tintColor) => (
-      <FontAwesome name="user" style={{fontSize: 24, color: '#FF5E3A'}}/>
+      <FontAwesome name="user" style={{fontSize: 24, color: '#4CA497'}}/>
     )
   };
 

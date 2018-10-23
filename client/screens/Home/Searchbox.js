@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Text from './MyText';
+import Text from '../MyText';
 
 import { View, InputGroup, Input } from 'native-base';
 import { FontAwesome } from "react-native-vector-icons";

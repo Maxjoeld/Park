@@ -33,7 +33,7 @@ const styles = {
   },
   modalBox: {
     width: '100%',
-    height: '40%', 
+    height: '20%', 
     backgroundColor: 'white',
     opacity:0.9,
   }
