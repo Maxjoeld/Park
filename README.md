@@ -15,4 +15,4 @@
 
 ## Screens
 
-![image](https://user-images.githubusercontent.com/30808913/47459353-eb2f7180-d7a9-11e8-9582-16d576e0a789.png)
+![image](https://user-images.githubusercontent.com/30808913/47459353-eb2f7180-d7a9-11e8-9582-16d576e0a789.png =100x20)
