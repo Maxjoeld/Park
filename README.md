@@ -8,7 +8,7 @@
 
 ## Installation
 ##### Install client dependencies 
-cd client && npm i
+``` cd client && npm i ```
 
 ##### Install server dependencies 
-pipenv install
+``` pipenv install ```
