@@ -12,6 +12,8 @@
 
 ##### Install server dependencies 
 ``` pipenv install ```
+##### Tech Stack
+React Native, Python-Django, Postgresql
 
 ## Screens
 
