@@ -9,7 +9,7 @@ import HomeHeader from './template/homeHeader';
 import Map from './map/map';
 import SuccessModal from './modal-anim/successModal';
 import CarAnimation from './modal-anim/carAnimation';
-import { currentLocation, locateQuery, locateDistance } from '../../app/actions';
+import { currentLocation, locateQuery, locateDistance } from '../../actions';
 import styles from './styles/homeStyles';
 
 class HomeScreen extends React.Component {

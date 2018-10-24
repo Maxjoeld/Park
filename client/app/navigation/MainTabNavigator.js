@@ -4,7 +4,7 @@ import { createDrawerNavigator,createStackNavigator, createBottomTabNavigator } 
 import { Text, View, SafeAreaView, ScrollView, Dimensions} from 'react-native';
 import { DrawerItems } from 'react-navigation';
 
-import TabBarIcon from '../components/TabBarsIcon';
+// import TabBarIcon from '../components/TabBarsIcon';
 import HomeScreen from '../screens/Home/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
@@ -15,7 +15,6 @@ const HomeStack = createStackNavigator({
 }, {
   headerMode: 'none',
 });
-
 // HomeStack.navigationOptions = {
 //   tabBarLabel: 'Homee',
 //   tabBarIcon: ({ focused }) => (
@@ -29,34 +28,15 @@ const HomeStack = createStackNavigator({
 //     />
 //   ),
 // };
-
 const LinksStack = createStackNavigator({
   Links: LinksScreen,
 });
 
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link'}
-    />
-  ),
-};
 
 const SettingsStack = createStackNavigator({
   Settings: SettingsScreen,
 });
 
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? `ios-options${focused ? '' : '-outline'}` : 'md-options'}
-    />
-  ),
-};
 const CustomDrawerComponent = (props) => (
   <SafeAreaView style={{ flex: 1 }}>
     <View style={{height:150,backgroundColor:'white', alignItems: 'center', 
