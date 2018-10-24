@@ -32,39 +32,41 @@ export function currentLocation() {
     );
   }
 }
-
+// Used for explicitly searching an address from the search bar. Rarely used 
 export function locateQuery(location) {
   return dispatch => {
     let url = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
     let address = url + location + `&key=${keys.mapKey}`;
-    // axios.get(address)
-    //   .then(res => {
-    //     const latitude = res.data.results[0].geometry.location.lat;
-    //     const longitude = res.data.results[0].geometry.location.lng;
-    //     dispatch({
-    //       type: CHANGE_LOCATION,
-    //       payload: { latitude, longitude }
-    //     });
-    //   })
-      // .catch(err => console.log('error'))
+    axios.get(address)
+      .then(res => {
+        const latitude = res.data.results[0].geometry.location.lat;
+        const longitude = res.data.results[0].geometry.location.lng;
+        dispatch({
+          type: CHANGE_LOCATION,
+          payload: { latitude, longitude }
+        });
+      })
+      .catch(err => console.log('error'))
   }
 }
 
 export function locateDistance(location) {
-  return dispatch => {
-    let url = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=';
-    // Washington,DC&destinations=New+York+City,NY&key=AIzaSyDu2dxYmF8NgnXcauIUJIvwbmh5beBvFfc
-    let address = `${url}${location.latitude},${location.longitude}&key=${keys.mapKey}`;
+  return (dispatch, getState) => {
+    const coords = getState().locationReducer.coords;
+    const origin = `${coords.latitude},${coords.longitude}`;
+    const destination = `${location.latitude},${location.longitude}`;
+    let url = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial';
+    let address = `${url}$&origins=${origin}&destinations=${destination}&key=${keys.mapKey}`;
     console.log(address);
-    // axios.get(address)
-    //   .then(res => {
-    //     const latitude = res.data.results[0].geometry.location.lat;
-    //     const longitude = res.data.results[0].geometry.location.lng;
-    //     dispatch({
-    //       type: CHANGE_LOCATION,
-    //       payload: { latitude, longitude }
-    //     });
-    //   })
-      // .catch(err => console.log('error'))
+    axios.get(address)
+      .then(res => {
+        const distance = res.data.rows[0].elements[0].duration.text;
+        console.log(distance);
+        // dispatch({
+        //   type: DISTANCE_BTWN_ORIGINS,
+        //   payload: distance
+        // });
+      })
+      .catch(err => console.log('error'))
   }
 }
