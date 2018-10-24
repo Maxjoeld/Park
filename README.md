@@ -6,7 +6,7 @@
 
 ###### The application is still a work in progress
 
-#### Installation
+## Installation
 ##### Install client dependencies 
 cd client && npm i
 
