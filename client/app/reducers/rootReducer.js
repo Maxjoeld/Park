@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
  
-import { GET_CURRENT_LOCATION, CHANGE_LOCATION  } from "../actions/"; //Import the actions types constant we defined in our actions
+import { GET_CURRENT_LOCATION, CHANGE_LOCATION  } from "../actions/";
  
 let initialState = { data: [], loading:true };
  
@@ -15,7 +15,7 @@ const locationReducer = (state = initialState, action) => {
     }
 };
  
-// Combine all the reducers
+
 const rootReducer = combineReducers({
     locationReducer
 })

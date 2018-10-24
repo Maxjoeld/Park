@@ -32,7 +32,8 @@ const Map = (props) => {
             <MapView.Marker
                key={index}
                coordinate={coords}
-               image={require('../../../assets/images/car.png')}
+               image={require('./car.png')}
+
                title={marker.stationName}
                pinColor="#4CA497"
             />

@@ -9,7 +9,7 @@ import HomeHeader from './template/homeHeader';
 import Map from './map/map';
 import SuccessModal from './modal-anim/successModal';
 import CarAnimation from './modal-anim/carAnimation';
-import { currentLocation, locateQuery } from '../../app/actions';
+import { currentLocation, locateQuery, locateDistance } from '../../app/actions';
 import styles from './styles/homeStyles';
 
 class HomeScreen extends React.Component {
@@ -55,23 +55,27 @@ class HomeScreen extends React.Component {
 
   render() {
     const { visible, searching, radius, loadData,loadCarAnimation } = this.state;
-    const { coords } = this.props;
+    const { coords, locateDistance, locateQuery } = this.props;
     return (
       <View style={styles.container}>
         <HomeHeader navigation={this.props.navigation}/>
-        {loadCarAnimation ? <CarAnimation /> : null }
+        {loadCarAnimation ? 
+          <CarAnimation /> 
+        : null }
         <SuccessModal 
           visible={visible} 
           toggleState={this.toggleState}
+          locateDistance={locateDistance}
         />
         {coords ? 
           <Map coords={coords} 
-          radius={radius} 
-          loadData={loadData}/> 
+            radius={radius} 
+            loadData={loadData}
+          /> 
         : null }
         <SearchBox 
           searching={searching} 
-          locate={this.props.locateQuery}
+          locate={locateQuery}
         />
         <Footer
           searching={searching} 
@@ -90,5 +94,5 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { currentLocation, locateQuery })(HomeScreen);
+export default connect(mapStateToProps, { currentLocation, locateQuery, locateDistance })(HomeScreen);
 

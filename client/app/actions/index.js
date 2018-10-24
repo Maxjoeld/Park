@@ -49,3 +49,22 @@ export function locateQuery(location) {
       // .catch(err => console.log('error'))
   }
 }
+
+export function locateDistance(location) {
+  return dispatch => {
+    let url = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=';
+    // Washington,DC&destinations=New+York+City,NY&key=AIzaSyDu2dxYmF8NgnXcauIUJIvwbmh5beBvFfc
+    let address = `${url}${location.latitude},${location.longitude}&key=${keys.mapKey}`;
+    console.log(address);
+    // axios.get(address)
+    //   .then(res => {
+    //     const latitude = res.data.results[0].geometry.location.lat;
+    //     const longitude = res.data.results[0].geometry.location.lng;
+    //     dispatch({
+    //       type: CHANGE_LOCATION,
+    //       payload: { latitude, longitude }
+    //     });
+    //   })
+      // .catch(err => console.log('error'))
+  }
+}
