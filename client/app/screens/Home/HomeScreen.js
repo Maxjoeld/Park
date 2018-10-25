@@ -15,8 +15,9 @@ import styles from './styles/homeStyles';
 class HomeScreen extends React.Component {
   static navigationOptions = {
     drawerIcon: (tintColor) => (
-      <FontAwesome name="home" style={{fontSize: 24, color: '#4CA497'}}/>
-    )
+      <FontAwesome name="home" style={{fontSize: 24, color: '#0E9'}}/>
+    ),
+    tabBarOptions: { activeTintColor:'red'}
   };
   
   state = {

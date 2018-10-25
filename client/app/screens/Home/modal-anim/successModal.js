@@ -20,8 +20,8 @@ class SuccessModal extends Component {
       <View style={styles.animation}>
         <View style={styles.modalBox}>
           <View style={{ flexDirection: 'row', marginTop:10, alignItems: 'center'}}>
-            <FontAwesome style={{ marginLeft: 10 }} name='check-circle' size={50} color='#4CA497' />
-            <Text style={{ fontFamily: 'HelveticaNeue-Medium',fontSize: 18, marginLeft: 20}}>Found a user 5 minutes away</Text>
+            <FontAwesome style={{ marginLeft: 10 }} name='check-circle' size={30} color='#4CA497' />
+            <Text style={{ fontFamily: 'HelveticaNeue-Medium',fontSize: 18, marginLeft: 13}}>Found a user 5 minutes away</Text>
           </View>
           <View style={{ marginTop: 20, justifyContent: 'center', alignItems:'center'}}>
             <Text style={{ fontSize: 16, marginBottom: 1 }}>Would you like to notify the user</Text>

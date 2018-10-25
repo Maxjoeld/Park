@@ -8,7 +8,7 @@ import Mod from "react-native-modal";
 export default class SettingsScreen extends React.Component {
   static navigationOptions = {
     drawerIcon: (tintColor) => (
-      <FontAwesome name="cog" style={{fontSize: 24, color: '#4CA497'}}/>
+      <FontAwesome name="cog" style={{fontSize: 24, color: '#0E9'}}/>
     )
   };
 
