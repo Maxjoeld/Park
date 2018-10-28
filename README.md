@@ -17,6 +17,7 @@ React Native, Python-Django, Postgresql
 
 ## Screens
 
-![img_2266 3](https://user-images.githubusercontent.com/30808913/47460085-bae8d280-d7ab-11e8-87e6-c6b4357ddad0.jpg)
+![park](https://user-images.githubusercontent.com/30808913/47610778-97cc5600-da2b-11e8-8729-d7a55353f3e5.jpg)
+
 
 
