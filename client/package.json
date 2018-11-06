@@ -29,7 +29,8 @@
     "react-navigation": "^2.16.0",
     "react-redux": "^5.0.7",
     "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "merge": ">=1.2.1"
   },
   "devDependencies": {
     "jest-expo": "30.0.0"
