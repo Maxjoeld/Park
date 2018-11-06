@@ -1,6 +1,6 @@
 # Park
 
-##### Mobile application that allows users to search for parking free of charge. The application relies on users to report when they are leaving their parking spot. Once the app receives a reqeust that a user is leaving, it alerts other users that are searching for parking spots within the specified radius.
+##### Mobile application that allows users to search for parking free of charge. The application relies on users to report when they are leaving their parking spot. Once the app receives a request that a user is leaving, it alerts other users that are searching for parking spots within the specified radius.
 
 ##### APP Makes use of the following API's Google Matrix, Google Map, and Google Geocode
 
@@ -17,6 +17,7 @@ React Native, Python-Django, Postgresql
 
 ## Screens
 
-![img_2266 3](https://user-images.githubusercontent.com/30808913/47460085-bae8d280-d7ab-11e8-87e6-c6b4357ddad0.jpg)
+![park](https://user-images.githubusercontent.com/30808913/47610778-97cc5600-da2b-11e8-8729-d7a55353f3e5.jpg)
+
 
 
