@@ -6,7 +6,7 @@ import { DrawerItems } from 'react-navigation';
 
 // import TabBarIcon from '../components/TabBarsIcon';
 import HomeScreen from '../screens/Home/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import LogoutScreen from '../screens/LogoutScreen';
 // import bg from './Park-blr.jpg';
@@ -30,7 +30,7 @@ const HomeStack = createStackNavigator({
 //   ),
 // };
 const LinksStack = createStackNavigator({
-  Links: LinksScreen,
+  Links: ProfileScreen,
 });
 
 
@@ -66,7 +66,7 @@ const CustomDrawerComponent = (props) => (
 const { width } = Dimensions.get('window');
 export default createDrawerNavigator({
   Home: HomeScreen,
-  Profile:LinksScreen,
+  Profile:ProfileScreen,
   Settings:SettingsScreen,
   Logout:LogoutScreen
 }, {
