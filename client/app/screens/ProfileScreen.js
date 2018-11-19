@@ -18,7 +18,31 @@ export default class LinksScreen extends React.Component {
             <Icon style={{ justifyContent: 'center'}} name="menu" onPress={() => this.props.navigation.openDrawer()}/>
           </Left>
         </Header>
-        <Text>Profile</Text>
+        <InputGroup >
+          <FontAwesome name='search' style={{ paddingTop: 13}} size={15} color='#FF5E3A'/>
+          <Input
+            // style={styles.inputSearch} 
+            // value={this.state.firstName}
+            placeholder='First Name'
+            onSubmitEditing={() => this.submit}
+            // returnKeyType="search"
+            />
+            <Input
+            // style={styles.inputSearch} 
+            // value={this.state.lastName}
+            placeholder='Last Name'
+            onSubmitEditing={() => this.submit}
+            returnKeyType="search"
+            />
+             <Input
+            // style={styles.inputSearch} 
+            // value={this.state.email}
+            name='location'
+            placeholder='Email'
+            onSubmitEditing={() => this.submit}
+            returnKeyType="search"
+            />
+        </InputGroup>
       </ScrollView>
     );
   }
