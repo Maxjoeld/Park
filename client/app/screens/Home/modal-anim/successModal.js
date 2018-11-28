@@ -8,7 +8,9 @@ import styles from '../styles/homeStyles';
 import Text from '../../MyText';
 
 class SuccessModal extends Component {
-  state = {  }
+  state = { 
+    showDetail: false,
+   }
 
   calcDistance = () => {
     this.props.toggleState('foundUser');
@@ -31,7 +33,7 @@ class SuccessModal extends Component {
                 <Text>Cancel</Text>
               </Text>
               <Text style={{ width: 80}} onPress={() => this.calcDistance()}>
-                <Text>Ok</Text>
+                <Text onPress={() => this.setState({showDetail: true})}>Ok</Text>
               </Text>
             </View>
           </View>
