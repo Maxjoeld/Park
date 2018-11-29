@@ -9,7 +9,6 @@ import Text from '../../MyText';
 
 class SuccessModal extends Component {
   state = { 
-    showDetail: false,
    }
 
   calcDistance = () => {
@@ -33,7 +32,7 @@ class SuccessModal extends Component {
                 <Text>Cancel</Text>
               </Text>
               <Text style={{ width: 80}} onPress={() => this.calcDistance()}>
-                <Text onPress={() => this.setState({showDetail: true})}>Ok</Text>
+                <Text onPress={() => this.loadDriverDetail()}>Ok</Text>
               </Text>
             </View>
           </View>
