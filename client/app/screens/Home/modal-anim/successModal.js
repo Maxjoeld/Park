@@ -32,7 +32,7 @@ class SuccessModal extends Component {
                 <Text>Cancel</Text>
               </Text>
               <Text style={{ width: 80}} onPress={() => this.calcDistance()}>
-                <Text onPress={() => this.loadDriverDetail()}>Ok</Text>
+                <Text onPress={() => this.toggleState('loadDetail')}>Ok</Text>
               </Text>
             </View>
           </View>
