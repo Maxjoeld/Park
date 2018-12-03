@@ -9,7 +9,7 @@ import HomeHeader from './template/homeHeader';
 import Map from './map/map';
 import SuccessModal from './modal-anim/successModal';
 import CarAnimation from './modal-anim/carAnimation';
-import DriverDetail from './DriverDetail';
+import DriverDetail from './driverDetail';
 import { currentLocation, locateQuery, locateDistance } from '../../actions';
 import styles from './styles/homeStyles';
 
