@@ -12,7 +12,10 @@ class DriverDetail extends Component {
         <Text>DriverDetail page</Text>
         <View>
           <Text>
-            
+            Driver 
+          </Text>
+          <Text>
+            Driver rating
           </Text>
         </View>
       </View>
