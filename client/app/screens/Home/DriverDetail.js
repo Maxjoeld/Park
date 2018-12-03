@@ -17,6 +17,9 @@ class DriverDetail extends Component {
           <Text>
             Driver rating
           </Text>
+          < Text >
+            Driver detail
+          </Text>
         </View>
       </View>
      );
