@@ -9,6 +9,10 @@ const styles = {
     position: "absolute",
     width: width,
   },
+  driverbox: {
+    width: width,
+    height: 100,
+  }
 };
 
 export default styles;
