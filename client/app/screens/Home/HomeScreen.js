@@ -9,6 +9,7 @@ import HomeHeader from './template/homeHeader';
 import Map from './map/map';
 import SuccessModal from './modal-anim/successModal';
 import CarAnimation from './modal-anim/carAnimation';
+import DriverDetail from './DriverDetail';
 import { currentLocation, locateQuery, locateDistance } from '../../actions';
 import styles from './styles/homeStyles';
 
@@ -26,6 +27,7 @@ class HomeScreen extends React.Component {
     radius: 450,
     loadCarAnimation: false,
     visible: false,
+    loadDetail: false,
   };
 
   componentDidMount() {
@@ -38,6 +40,8 @@ class HomeScreen extends React.Component {
         return this.setState({ visible: false })
       case 'searching':
         return this.setState({ searching: !this.state.searching })
+      case 'loadDetail':
+        return this.setState({ loadDetail: true })
       case 'radius':
         return this.setState({radius: value});
     }
@@ -55,7 +59,7 @@ class HomeScreen extends React.Component {
   }
 
   render() {
-    const { visible, searching, radius, loadData,loadCarAnimation } = this.state;
+    const { loadDetail, visible, searching, radius, loadData,loadCarAnimation } = this.state;
     const { coords, locateDistance, locateQuery } = this.props;
     return (
       <View style={styles.container}>
@@ -63,6 +67,9 @@ class HomeScreen extends React.Component {
         {loadCarAnimation ? 
           <CarAnimation /> 
         : null }
+        {this.loadDetail ?
+          <DriverDetail />
+        :null }
         <SuccessModal 
           visible={visible} 
           toggleState={this.toggleState}

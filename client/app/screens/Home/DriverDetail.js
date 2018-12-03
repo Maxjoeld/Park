@@ -1,15 +1,20 @@
-import React from 'react'; 
+import React, { Component } from 'react'; 
 import {
   Text, View
 } from 'react-native';
-
+import styles from './driverStyles';
 
 class DriverDetail extends Component {
   state = {  }
   render() { 
     return ( 
-      <View>
+      <View style={styles.searchBox}>
         <Text>DriverDetail page</Text>
+        <View>
+          <Text>
+            
+          </Text>
+        </View>
       </View>
      );
   }
