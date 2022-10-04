@@ -17,7 +17,7 @@
     "@mapbox/polyline": "^1.0.0",
     "axios": "^0.18.0",
     "dotenv": "^6.1.0",
-    "expo": "^30.0.1",
+    "expo": "^46.0.14",
     "native-base": "^2.8.1",
     "react": "16.3.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
